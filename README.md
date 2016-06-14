@@ -1,7 +1,5 @@
 # pcd-actors
 
-# pcd-actors
-
 > This repository contains an implementation of the actor system as a solution to the following assignment
  (https://github.com/rcardin/pcd-actors).
 
