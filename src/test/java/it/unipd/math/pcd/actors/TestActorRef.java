@@ -21,12 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  * <p/>
- * Please, insert description here.
- *
- * @author Riccardo Cardin
- * @version 1.0
- * @since 1.0
- */
 
 /**
  * Please, insert description here.
@@ -38,6 +32,7 @@
 package it.unipd.math.pcd.actors;
 
 import it.unipd.math.pcd.actors.*;
+import it.unipd.math.pcd.actors.impl.ActorSystemImpl;
 
 /**
  * Decorates an {@link ActorRef} adding the ability to get the underlying actor associated to the reference.
@@ -61,8 +56,7 @@ public class TestActorRef<T extends Message> implements ActorRef<T> {
      * @return An actor
      */
     public Actor<T> getUnderlyingActor(ActorSystem system) {
-        // TODO To implement
-        return null;
+        return (Actor<T>) ((ActorSystemImpl) system).getActor(reference);
     }
 
     @Override
