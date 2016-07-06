@@ -23,7 +23,7 @@
  * <p/>
  */
 
-package it.unipd.math.pcd.actors.impl;
+package it.unipd.math.pcd.actors.implementation;
 
 import it.unipd.math.pcd.actors.AbsMessage;
 import it.unipd.math.pcd.actors.ActorRef;

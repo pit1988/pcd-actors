@@ -23,7 +23,7 @@
  * <p/>
  */
 
-package it.unipd.math.pcd.actors.impl;
+package it.unipd.math.pcd.actors.implementation;
 
 import it.unipd.math.pcd.actors.*;
 import it.unipd.math.pcd.actors.exceptions.NoSuchActorException;
@@ -49,16 +49,16 @@ public class ActorRefImp<T extends Message> implements ActorRef<T> {
 
     /**
      * Check if an instance of an ActorRef is the same of the current object instance.
-     * @param o ActorRef compared to the current instance
+     * @param ar ActorRef compared to the current instance
      * @return 0 if the instance is the same or the actors are the same, 1 otherwise.
      */
     @Override
-    public int compareTo(ActorRef o) {
-        if (this == o)
+    public int compareTo(ActorRef ar) {
+        if (this == ar)
             return 0;
         else {
             AbsActor actor1 = (AbsActor) system.getActor(this);
-            AbsActor actor2 = (AbsActor) system.getActor(o);
+            AbsActor actor2 = (AbsActor) system.getActor(ar);
             return (actor1.getSelfRef() == actor2.getSelfRef()) ? 0 : 1;
         }
     }
@@ -75,7 +75,7 @@ public class ActorRefImp<T extends Message> implements ActorRef<T> {
         if (receiver == null || receiver.isStopped())
             throw new NoSuchActorException();
         else
-          receiver.addToMailbox(new AbsMessage(message, this));
+          receiver.addToMailbox(new MessageImp(message, this));
     }
 }
 

@@ -23,7 +23,7 @@
  * <p/>
  */
 
-package it.unipd.math.pcd.actors.impl;
+package it.unipd.math.pcd.actors.implementation;
 
 import it.unipd.math.pcd.actors.AbsActorSystem;
 import it.unipd.math.pcd.actors.ActorRef;
@@ -34,7 +34,7 @@ import it.unipd.math.pcd.actors.ActorRef;
  * @version 1.0
  * @since 1.0
  */
-public class ActorSystemImpl extends AbsActorSystem {
+public class ActorSystemImp extends AbsActorSystem {
 
 	/**
      * Creates an ActorRef object of the given type.
@@ -44,9 +44,9 @@ public class ActorSystemImpl extends AbsActorSystem {
     @Override
     protected ActorRef createActorReference(ActorMode mode) {
 
-        if (mode == ActorMode.LOCAL)
-            return new LocalActorRef(this);
-        else 
+        if (mode == ActorMode.REMOTE)
             throw new IllegalArgumentException();
+        else
+            return new ActorRefImp(this);
     }
 }

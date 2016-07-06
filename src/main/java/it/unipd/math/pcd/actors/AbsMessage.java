@@ -24,7 +24,7 @@
  */
 
 
-<package it.unipd.math.pcd.actors;
+package it.unipd.math.pcd.actors;
 
 /**
  * Abstract implementation of message.
