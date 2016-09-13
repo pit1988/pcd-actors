@@ -21,62 +21,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  * <p/>
+ */
+
+package it.unipd.math.pcd.actors.impl;
+
+import it.unipd.math.pcd.actors.AbsMessage;
+import it.unipd.math.pcd.actors.ActorRef;
+import it.unipd.math.pcd.actors.Message;
 
 /**
- * Please, insert description here.
- *
- * @author Riccardo Cardin
+ * Concrete implementation of AbsMessage.
+ * @author Pietro Gabelli
  * @version 1.0
  * @since 1.0
  */
-package it.unipd.math.pcd.actors;
 
-import it.unipd.math.pcd.actors.*;
-import it.unipd.math.pcd.actors.impl.ActorSystemImpl;
+public final class MessageImpl<T extends Message> extends AbsMessage<T> {
 
-/**
- * Decorates an {@link ActorRef} adding the ability to get the underlying actor associated to the reference.
- *
- * @author Riccardo Cardin
- * @version 1.0
- * @since 1.0
- */
-public class TestActorRef<T extends Message> implements ActorRef<T> {
-
-    private ActorRef<T> reference;
-
-    public TestActorRef(ActorRef<T> actorRef) {
-        this.reference = actorRef;
+    public MessageImpl(T message, ActorRef<T> sender) {
+        super(message, sender);
+    }
+    
+    /**
+     * Return the message object
+     * @return The message object
+     */
+    @Override
+    public Message getMessage() {
+        return super.message;
     }
 
     /**
-     * Returns the {@link Actor} associated to the internal reference.
-     * @param system Actor system from which retrieving the actor
-     *
-     * @return An actor
+     * Return the sender object
+     * @return The sender object
      */
-    public Actor<T> getUnderlyingActor(ActorSystem system) {
-        return (Actor<T>) ((ActorSystemImpl) system).getActor(reference);
-    }
-
     @Override
-    public void send(T message, ActorRef to) {
-        reference.send(message, to);
-    }
-
-    @Override
-    public int compareTo(ActorRef o) {
-        return reference.compareTo(o);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return reference.equals(obj);
-    }
-
-    @Override
-    public int hashCode() {
-	   System.out.println(reference.hashCode());
-        return reference.hashCode();
+    public ActorRef getSender() {
+        return super.sender;
     }
 }

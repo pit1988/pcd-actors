@@ -37,45 +37,21 @@
  */
 package it.unipd.math.pcd.actors;
 
-import it.unipd.math.pcd.actors.impl.ActorSystemImpl;
-import it.unipd.math.pcd.actors.utils.ActorSystemFactory;
-import it.unipd.math.pcd.actors.utils.actors.TrivialActor;
-import it.unipd.math.pcd.actors.utils.messages.TrivialMessage;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
 /**
- * Test cases about {@link ActorRef} type.
+ * A reference of an actor that allow to locate it in the actor system.
+ * Using this reference it is possible to send a message among actors.
  *
  * @author Riccardo Cardin
  * @version 1.0
  * @since 1.0
  */
-public class ActorRefTest {
-
-    private ActorSystem system;
+public interface ActorRef<T extends Message> extends Comparable<ActorRef> {
 
     /**
-     * Initializes the {@code system} with a concrete implementation before each test.
+     * Sends a {@code message} to another actor
+     *
+     * @param message The message to send
+     * @param to The actor to which sending the message
      */
-    @Before
-    public void init() {
-        system = ActorSystemFactory.buildActorSystem();
-    }
-
-    @Test
-    public void shouldImplementComparable() {
-        ActorRef ref1 = system.actorOf(TrivialActor.class);
-        ActorRef ref2 = system.actorOf(TrivialActor.class);
-        Assert.assertNotEquals("Two references must appear as different using the compareTo method",
-                0, ref1.compareTo(ref2));
-        Assert.assertEquals("A reference must be equal to itself according to compareTo method",
-                0, ref1.compareTo(ref1));
-    }
+    void send(T message, ActorRef to);
 }
-
-
-
-
-

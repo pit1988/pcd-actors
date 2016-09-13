@@ -21,21 +21,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  * <p/>
- * Please, insert description here.
- *
- * @author Riccardo Cardin
- * @version 1.0
- * @since 1.0
  */
 
-/**
- * Please, insert description here.
- *
- * @author Riccardo Cardin
- * @version 1.0
- * @since 1.0
- */
 package it.unipd.math.pcd.actors;
+
+import it.unipd.math.pcd.actors.exceptions.NoSuchActorException;
+import it.unipd.math.pcd.actors.impl.MessageImpl;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.RejectedExecutionException;
 
 /**
  * Defines common properties of all actors.
@@ -45,6 +40,11 @@ package it.unipd.math.pcd.actors;
  * @since 1.0
  */
 public abstract class AbsActor<T extends Message> implements Actor<T> {
+
+    /**
+     * Queue of the tasks of the current actor.
+     */
+    private final ExecutorService mailBox = Executors.newSingleThreadExecutor();
 
     /**
      * Self-reference of the actor
@@ -65,5 +65,84 @@ public abstract class AbsActor<T extends Message> implements Actor<T> {
     protected final Actor<T> setSelf(ActorRef<T> self) {
         this.self = self;
         return this;
+    }
+
+    /**
+     * Sets the referece to the sender of current message.
+     *
+     * @param sender The reference to the sender
+     */
+    protected final void setSender(ActorRef<T> sender) {
+        this.sender = sender;
+    }
+
+    /**
+     * Stops gracefully the current actor.
+     */
+    public void stopActor() {
+        mailBox.shutdown();
+    }
+
+    /**
+     * Returns if the actor is stopped.
+     */
+    public boolean isStopped() {
+        return mailBox.isShutdown();
+    }
+
+    /**
+     * Returns a reference to itself.
+     *
+     * @return The reference to the current actor.
+     */
+    public ActorRef<T> getSelfRef() {
+        return self;
+    }
+
+
+    /**
+     * Adds a message to the mailbox queue. The queue will execute the message after the execution of
+     * the previous messages.
+     *
+     * @throws it.unipd.math.pcd.actors.exceptions.NoSuchActorException
+     */
+    public void addToMailbox(MessageImpl message) throws NoSuchActorException {
+        MessageTask task = new MessageTask(message);
+
+        try {
+            if (isStopped())
+                throw new NoSuchActorException("Actor stopped");
+                /*
+                before commit 09d7c748bdff11099450bd7a39ea046a2a1012b4 was
+                throw new UnsupportedMessageException((Message) task.message);
+                */
+            mailBox.execute(task);
+
+        } catch (RejectedExecutionException ex) { //In case actor is stopped between the status check and the addition of the task
+            throw new NoSuchActorException("Actor stopped");
+                /*
+                before commit 09d7c748bdff11099450bd7a39ea046a2a1012b4 was
+                throw new UnsupportedMessageException((Message) task.message);
+                */
+        }
+    }
+
+    /**
+     * Internal hidden class. It creates a task from a message.
+     */
+    private class MessageTask implements Runnable {
+        public final AbsMessage message;
+        public final AbsActor actor;
+
+        MessageTask(MessageImpl message) {
+            this.message = message;
+            this.actor = (AbsActor) AbsActor.this;
+        }
+
+        @Override
+        public void run() {
+            actor.setSender(message.getSender());
+            actor.receive(message.getMessage());
+        }
     }
 }

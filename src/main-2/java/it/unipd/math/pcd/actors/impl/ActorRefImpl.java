@@ -23,7 +23,7 @@
  * <p/>
  */
 
-package it.unipd.math.pcd.actors.implementation;
+package it.unipd.math.pcd.actors.impl;
 
 import it.unipd.math.pcd.actors.*;
 import it.unipd.math.pcd.actors.exceptions.NoSuchActorException;
@@ -35,16 +35,16 @@ import it.unipd.math.pcd.actors.exceptions.NoSuchActorException;
  * @version 1.0
  * @since 1.0
  */
-public class ActorRefImp<T extends Message> implements ActorRef<T> {
+public class ActorRefImpl<T extends Message> implements ActorRef<T> {
 
     private final AbsActorSystem system;
 
     /**
-     * ActorRefImp constructor. Requires an instance of the ActorSystem.
+     * ActorRefImpl constructor. Requires an instance of the ActorSystem.
      * @param system the instance of the BaseActorSystem object
      */
-    public ActorRefImp(AbsActorSystem sys) {
-        system = sys;
+    public ActorRefImpl(AbsActorSystem sys) {
+        this.system = sys;
     }
 
     /**
@@ -75,12 +75,6 @@ public class ActorRefImp<T extends Message> implements ActorRef<T> {
         if (receiver == null || receiver.isStopped())
             throw new NoSuchActorException();
         else
-          receiver.addToMailbox(new MessageImp(message, this));
+          receiver.addToMailbox(new MessageImpl(message, this));
     }
 }
-
-    // @Override
-    // public void send(T message, ActorRef to) {
-    //     AbsActor receiver = (AbsActor) actorSystem.getActor(to);
-    //     receiver.scheduleMessage(message, this);
-    // }

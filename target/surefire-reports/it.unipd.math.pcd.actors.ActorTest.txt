@@ -1,0 +1,16 @@
+-------------------------------------------------------------------------------
+Test set: it.unipd.math.pcd.actors.ActorTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 6.097 sec <<< FAILURE! - in it.unipd.math.pcd.actors.ActorTest
+shouldBeAbleToRespondToAMessage(it.unipd.math.pcd.actors.ActorTest)  Time elapsed: 2.02 sec  <<< ERROR!
+java.lang.NullPointerException: null
+	at it.unipd.math.pcd.actors.ActorTest.shouldBeAbleToRespondToAMessage(ActorTest.java:96)
+
+shouldNotLooseAnyMessage(it.unipd.math.pcd.actors.ActorTest)  Time elapsed: 2.054 sec  <<< ERROR!
+java.lang.NullPointerException: null
+	at it.unipd.math.pcd.actors.ActorTest.shouldNotLooseAnyMessage(ActorTest.java:112)
+
+shouldBeAbleToSendAMessage(it.unipd.math.pcd.actors.ActorTest)  Time elapsed: 2.02 sec  <<< ERROR!
+java.lang.NullPointerException: null
+	at it.unipd.math.pcd.actors.ActorTest.shouldBeAbleToSendAMessage(ActorTest.java:80)
+

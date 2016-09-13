@@ -1,6 +1,5 @@
 it/unipd/math/pcd/actors/AbsActor$MessageTask.class
 it/unipd/math/pcd/actors/Actor.class
-it/unipd/math/pcd/actors/implementation/ActorSystemImp.class
 it/unipd/math/pcd/actors/AbsActor.class
 it/unipd/math/pcd/actors/Message.class
 it/unipd/math/pcd/actors/ActorSystem$ActorMode.class
@@ -9,6 +8,7 @@ it/unipd/math/pcd/actors/ActorSystem.class
 it/unipd/math/pcd/actors/exceptions/NoSuchActorException.class
 it/unipd/math/pcd/actors/AbsMessage.class
 it/unipd/math/pcd/actors/ActorRef.class
-it/unipd/math/pcd/actors/implementation/MessageImp.class
+it/unipd/math/pcd/actors/impl/ActorRefImpl.class
+it/unipd/math/pcd/actors/impl/ActorSystemImpl.class
 it/unipd/math/pcd/actors/AbsActorSystem.class
-it/unipd/math/pcd/actors/implementation/ActorRefImp.class
+it/unipd/math/pcd/actors/impl/MessageImpl.class

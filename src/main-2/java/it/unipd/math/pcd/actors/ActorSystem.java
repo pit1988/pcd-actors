@@ -37,45 +37,55 @@
  */
 package it.unipd.math.pcd.actors;
 
-import it.unipd.math.pcd.actors.impl.ActorSystemImpl;
-import it.unipd.math.pcd.actors.utils.ActorSystemFactory;
-import it.unipd.math.pcd.actors.utils.actors.TrivialActor;
-import it.unipd.math.pcd.actors.utils.messages.TrivialMessage;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
 /**
- * Test cases about {@link ActorRef} type.
+ * The system of actors. Using the system it is possible to:
+ * <ul>
+ *     <li>Create a new instance of an actor</li>
+ *     <li>Stopping an actor</li>
+ * </ul>
  *
  * @author Riccardo Cardin
  * @version 1.0
  * @since 1.0
  */
-public class ActorRefTest {
-
-    private ActorSystem system;
+public interface ActorSystem {
 
     /**
-     * Initializes the {@code system} with a concrete implementation before each test.
+     * Create an instance of {@code actor} returning a {@link ActorRef reference} to it using the given {@code mode}.
+     *
+     * @param actor The type of actor that has to be created
+     * @param mode The mode of the actor requested
+     *
+     * @return A reference to the actor
      */
-    @Before
-    public void init() {
-        system = ActorSystemFactory.buildActorSystem();
-    }
+    ActorRef<? extends Message> actorOf(Class<? extends Actor> actor, ActorMode mode);
 
-    @Test
-    public void shouldImplementComparable() {
-        ActorRef ref1 = system.actorOf(TrivialActor.class);
-        ActorRef ref2 = system.actorOf(TrivialActor.class);
-        Assert.assertNotEquals("Two references must appear as different using the compareTo method",
-                0, ref1.compareTo(ref2));
-        Assert.assertEquals("A reference must be equal to itself according to compareTo method",
-                0, ref1.compareTo(ref1));
+    /**
+     * Create an instance of {@code actor} that executes locally.
+     *
+     * @param actor The type of actor that has to be created
+     * @return A reference to the actor
+     */
+    ActorRef<? extends Message> actorOf(Class<? extends Actor> actor);
+
+    /**
+     * Stops {@code actor}.
+     *
+     * @param actor The actor to be stopped
+     */
+    void stop(ActorRef<?> actor);
+
+    /**
+     * Stops all actors of the system.
+     */
+    void stop();
+
+    /**
+     * Possible modes to create an actor. {@code LOCALE} mode is used to create an actor
+     * that acts in the local system. {@code REMOTE} mode is used to create remote actors.
+     */
+    enum ActorMode {
+        LOCAL,
+        REMOTE
     }
 }
-
-
-
-
-

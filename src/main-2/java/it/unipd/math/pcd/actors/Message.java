@@ -21,42 +21,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  * <p/>
- */
-
-package it.unipd.math.pcd.actors.implementation;
-
-import it.unipd.math.pcd.actors.AbsMessage;
-import it.unipd.math.pcd.actors.ActorRef;
-import it.unipd.math.pcd.actors.Message;
-
-/**
- * Concrete implementation of AbsMessage.
- * @author Pietro Gabelli
+ * Please, insert description here.
+ *
+ * @author Riccardo Cardin
  * @version 1.0
  * @since 1.0
  */
 
-public final class MessageImp<T extends Message> extends AbsMessage<T> {
+/**
+ * Please, insert description here.
+ *
+ * @author Riccardo Cardin
+ * @version 1.0
+ * @since 1.0
+ */
+package it.unipd.math.pcd.actors;
 
-    public MessageImp(T message, ActorRef<T> sender) {
-        super(message, sender);
-    }
-    
-    /**
-     * Return the message object
-     * @return The message object
-     */
-    @Override
-    public Message getMessage() {
-        return super.message;
-    }
-
-    /**
-     * Return the sender object
-     * @return The sender object
-     */
-    @Override
-    public ActorRef getSender() {
-        return super.sender;
-    }
+/**
+ * A message that can be sent among actors
+ *
+ * @author Riccardo Cardin
+ * @version 1.0
+ * @since 1.0
+ */
+public interface Message {
 }

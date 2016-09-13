@@ -37,45 +37,22 @@
  */
 package it.unipd.math.pcd.actors;
 
-import it.unipd.math.pcd.actors.impl.ActorSystemImpl;
-import it.unipd.math.pcd.actors.utils.ActorSystemFactory;
-import it.unipd.math.pcd.actors.utils.actors.TrivialActor;
-import it.unipd.math.pcd.actors.utils.messages.TrivialMessage;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
 /**
- * Test cases about {@link ActorRef} type.
+ * An actor in the <code>pcd-actor</code> system that receives
+ * messages of a defined type.
  *
  * @author Riccardo Cardin
  * @version 1.0
  * @since 1.0
  */
-public class ActorRefTest {
-
-    private ActorSystem system;
+public interface Actor<T extends Message> {
 
     /**
-     * Initializes the {@code system} with a concrete implementation before each test.
+     * Defines the interface of the actor.
+     *
+     * @param message The type of messages the actor can receive
+     * @throws it.unipd.math.pcd.actors.exceptions.UnsupportedMessageException If the message is not supported by
+     *         the actor.
      */
-    @Before
-    public void init() {
-        system = ActorSystemFactory.buildActorSystem();
-    }
-
-    @Test
-    public void shouldImplementComparable() {
-        ActorRef ref1 = system.actorOf(TrivialActor.class);
-        ActorRef ref2 = system.actorOf(TrivialActor.class);
-        Assert.assertNotEquals("Two references must appear as different using the compareTo method",
-                0, ref1.compareTo(ref2));
-        Assert.assertEquals("A reference must be equal to itself according to compareTo method",
-                0, ref1.compareTo(ref1));
-    }
+    void receive(T message);
 }
-
-
-
-
-

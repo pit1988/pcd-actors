@@ -21,32 +21,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  * <p/>
- */
-
-package it.unipd.math.pcd.actors.implementation;
-
-import it.unipd.math.pcd.actors.AbsActorSystem;
-import it.unipd.math.pcd.actors.ActorRef;
-
-/**
- * Concrete implementation of the actor system.
- * @author Pietro Gabelli
+ * Please, insert description here.
+ *
+ * @author Riccardo Cardin
  * @version 1.0
  * @since 1.0
  */
-public class ActorSystemImp extends AbsActorSystem {
 
-	/**
-     * Creates an ActorRef object of the given type.
-     * @param mode type of the ActorRef to be created
-     * @return the created ActorRef object
-     */
-    @Override
-    protected ActorRef createActorReference(ActorMode mode) {
+/**
+ * Please, insert description here.
+ *
+ * @author Riccardo Cardin
+ * @version 1.0
+ * @since 1.0
+ */
+package it.unipd.math.pcd.actors.exceptions;
 
-        if (mode == ActorMode.REMOTE)
-            throw new IllegalArgumentException();
-        else
-            return new ActorRefImp(this);
+/**
+ * Thrown to indicate an error during the creation of a new actor of unknown type in a specified
+ * {@link it.unipd.math.pcd.actors.ActorSystem actor system}.
+ *
+ * @author Riccardo Cardin
+ * @version 1.0
+ * @since 1.0
+ */
+public class NoSuchActorException extends RuntimeException {
+
+    public NoSuchActorException() {
+    }
+
+    public NoSuchActorException(String message) {
+        super(message);
+    }
+
+    public NoSuchActorException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public NoSuchActorException(Throwable cause) {
+        super(cause);
     }
 }
