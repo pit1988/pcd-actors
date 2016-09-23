@@ -97,10 +97,9 @@ public abstract class AbsActorSystem implements ActorSystem {
     @Override
     public void stop(ActorRef<?> reference) throws NoSuchActorException {
         AbsActor actor = (AbsActor) getActor(reference);
-        actor.stopActor();
+        actor.shutDownActor();
         actors.remove(reference);
     }
-
 
     /**
      * Stops all the actors that are active in the actor system.
