@@ -25,28 +25,38 @@
 
 package it.unipd.math.pcd.actors.impl;
 
-import it.unipd.math.pcd.actors.AbsActorSystem;
+import it.unipd.math.pcd.actors.AbsMessage;
 import it.unipd.math.pcd.actors.ActorRef;
+import it.unipd.math.pcd.actors.Message;
 
 /**
- * Concrete implementation of the actor system.
+ * Concrete implementation of AbsMessage.
  * @author Pietro Gabelli
  * @version 1.0
  * @since 1.0
  */
-public class ActorSystemImpl extends AbsActorSystem {
 
-	/**
-     * Creates an ActorRef object of the given type.
-     * @param mode type of the ActorRef to be created
-     * @return the created ActorRef object
+public final class MessageImp<T extends Message> extends AbsMessage<T> {
+
+    public MessageImp(T message, ActorRef<T> sender) {
+        super(message, sender);
+    }
+    
+    /**
+     * Return the message object
+     * @return The message object
      */
     @Override
-    protected ActorRef createActorReference(ActorMode mode) {
+    public Message getMessage() {
+        return super.message;
+    }
 
-        if (mode == ActorMode.REMOTE)
-            throw new IllegalArgumentException();
-        else
-            return new ActorRefImpl(this);
+    /**
+     * Return the sender object
+     * @return The sender object
+     */
+    @Override
+    public ActorRef getSender() {
+        return super.sender;
     }
 }

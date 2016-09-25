@@ -43,6 +43,7 @@ import it.unipd.math.pcd.actors.utils.actors.TrivialActor;
 import it.unipd.math.pcd.actors.utils.messages.TrivialMessage;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.After;
 import org.junit.Test;
 
 /**
@@ -62,6 +63,10 @@ public class ActorSystemTest {
     @Before
     public void init() {
         system = ActorSystemFactory.buildActorSystem();
+    }
+    @After
+    public void stop() {
+        this.system.stop();
     }
 
     @Test

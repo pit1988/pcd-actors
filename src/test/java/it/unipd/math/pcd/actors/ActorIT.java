@@ -47,6 +47,7 @@ import it.unipd.math.pcd.actors.utils.messages.counter.Increment;
 import it.unipd.math.pcd.actors.utils.messages.ping.pong.PingMessage;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.After;
 import org.junit.Test;
 
 /**
@@ -66,6 +67,10 @@ public class ActorIT {
     @Before
     public void init() {
         this.system = ActorSystemFactory.buildActorSystem();
+    }
+    @After
+    public void stop() {
+        this.system.stop();
     }
 
     @Test

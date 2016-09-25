@@ -35,7 +35,7 @@ import it.unipd.math.pcd.actors.exceptions.NoSuchActorException;
  * @version 1.0
  * @since 1.0
  */
-public class ActorRefImpl<T extends Message> implements ActorRef<T> {
+public class ActorRefImp<T extends Message> implements ActorRef<T> {
 
     private final AbsActorSystem system;
 
@@ -43,7 +43,7 @@ public class ActorRefImpl<T extends Message> implements ActorRef<T> {
      * ActorRefImpl constructor. Requires an instance of the ActorSystem.
      * @param system the instance of the BaseActorSystem object
      */
-    public ActorRefImpl(AbsActorSystem sys) {
+    public ActorRefImp(AbsActorSystem sys) {
         this.system = sys;
     }
 
@@ -75,6 +75,6 @@ public class ActorRefImpl<T extends Message> implements ActorRef<T> {
         if (receiver == null || receiver.isStopped())
             throw new NoSuchActorException();
         else
-          receiver.addToMailbox(new MessageImpl(message, this));
+          receiver.addToMailbox(new MessageImp(message, this));
     }
 }

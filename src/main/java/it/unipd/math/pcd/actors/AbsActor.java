@@ -38,7 +38,7 @@
 package it.unipd.math.pcd.actors;
 
 import it.unipd.math.pcd.actors.exceptions.NoSuchActorException;
-import it.unipd.math.pcd.actors.impl.MessageImpl;
+import it.unipd.math.pcd.actors.impl.MessageImp;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -118,7 +118,7 @@ public abstract class AbsActor<T extends Message> implements Actor<T> {
      *
      * @throws it.unipd.math.pcd.actors.exceptions.NoSuchActorException
      */
-    public void addToMailbox(MessageImpl msg) throws NoSuchActorException {
+    public void addToMailbox(MessageImp msg) throws NoSuchActorException {
         TaskMsg task = new TaskMsg(msg);
         try {
             if (isStopped()){
@@ -138,7 +138,7 @@ public abstract class AbsActor<T extends Message> implements Actor<T> {
         public final AbsMessage message;
         public final AbsActor actor;
 
-        TaskMsg(MessageImpl msg) {
+        TaskMsg(MessageImp msg) {
             this.message = msg;
             this.actor = (AbsActor) AbsActor.this;
         }

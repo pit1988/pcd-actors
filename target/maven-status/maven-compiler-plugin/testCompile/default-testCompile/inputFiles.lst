@@ -1,6 +1,5 @@
 /home/pietro/Documenti/Smartgit/pcd-actors/src/test/java/it/unipd/math/pcd/actors/ActorIT.java
 /home/pietro/Documenti/Smartgit/pcd-actors/src/test/java/it/unipd/math/pcd/actors/utils/actors/counter/CounterActor.java
-/home/pietro/Documenti/Smartgit/pcd-actors/src/test/java/it/unipd/math/pcd/actors/ActorTest.java
 /home/pietro/Documenti/Smartgit/pcd-actors/src/test/java/it/unipd/math/pcd/actors/utils/messages/TrivialMessage.java
 /home/pietro/Documenti/Smartgit/pcd-actors/src/test/java/it/unipd/math/pcd/actors/utils/actors/TrivialActor.java
 /home/pietro/Documenti/Smartgit/pcd-actors/src/test/java/it/unipd/math/pcd/actors/ActorSystemTest.java

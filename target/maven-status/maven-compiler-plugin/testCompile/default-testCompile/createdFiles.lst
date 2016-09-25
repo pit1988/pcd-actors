@@ -1,5 +1,4 @@
 it/unipd/math/pcd/actors/ActorRefTest.class
-it/unipd/math/pcd/actors/ActorTest.class
 it/unipd/math/pcd/actors/utils/messages/counter/Decrement.class
 it/unipd/math/pcd/actors/ActorIT.class
 it/unipd/math/pcd/actors/utils/messages/ping/pong/PingMessage.class

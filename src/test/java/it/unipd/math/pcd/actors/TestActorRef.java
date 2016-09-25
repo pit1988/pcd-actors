@@ -32,7 +32,7 @@
 package it.unipd.math.pcd.actors;
 
 import it.unipd.math.pcd.actors.*;
-import it.unipd.math.pcd.actors.implementation.ActorSystemImp;
+import it.unipd.math.pcd.actors.impl.ActorSystemImp;
 
 /**
  * Decorates an {@link ActorRef} adding the ability to get the underlying actor associated to the reference.
